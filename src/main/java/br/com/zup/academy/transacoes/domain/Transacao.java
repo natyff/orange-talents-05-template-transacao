@@ -1,8 +1,10 @@
 package br.com.zup.academy.transacoes.domain;
 
-import br.com.zupacademy.natalia.transacao.Cartao;
-import br.com.zupacademy.natalia.transacao.Estabelecimento;
+import br.com.zupacademy.natalia.transacao.dto.Cartao;
+import br.com.zupacademy.natalia.transacao.dto.Estabelecimento;
+import br.com.zupacademy.natalia.transacao.entities.TransacaoEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +21,15 @@ public class Transacao {
     private Cartao cartao;
     @JsonProperty
     private LocalDateTime efetivadaEm;
+
+
+    public TransacaoEntity converter() {
+        return new TransacaoEntity(this.id, this.valor, this.estabelecimento, this.cartao,
+                this.efetivadaEm);
+    }
+
+    public Transacao() {
+    }
 
     public String getId() {
         return id;
